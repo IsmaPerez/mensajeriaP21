@@ -18,12 +18,12 @@ if(isset($_GET["id"])) {
     $result2 = $mysql->query("SELECT * FROM usuarios WHERE id=$idUsu");
     $fila = $result->fetch_assoc();
     $fila2 = $result2->fetch_assoc();
+    echo "<h1>Bienvenido al muro de ".$fila2["nombre"]."</h1>";
     if ($fila == NULL) {
         echo "<p>No hay mensajes</p>";
     } else {
         while ($fila) {
             $idmens=$fila["id_mensaje"];
-            echo "<h1>Bienvenido al muro de ".$fila2["nombre"]."</h1>";
             echo $fila["mensaje"];
             echo "<br>";
             echo "<a href='detalles.php?idmens=$idmens' >Ver mensaje en detalle</a>";

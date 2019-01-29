@@ -10,31 +10,30 @@
     <link rel="stylesheet" href="bootstrap.min.css">
 </head>
 <body>
-<h1>Bienvenido a tu muro personal</h1>
 <?php
-session_start();
-if(isset($_SESSION["usuario"])) {
-    $idUsu = $_SESSION["usuario"];
+if(isset($_GET["id"])) {
+    $idUsu = $_GET["id"];
     $mysql = new mysqli("localhost", "user", "user", "mensajeria");
     $result = $mysql->query("SELECT * FROM mensajes WHERE id_usuario=$idUsu");
+    $result2 = $mysql->query("SELECT * FROM usuarios WHERE id=$idUsu");
     $fila = $result->fetch_assoc();
+    $fila2 = $result2->fetch_assoc();
     if ($fila == NULL) {
         echo "<p>No hay mensajes</p>";
     } else {
         while ($fila) {
             $idmens=$fila["id_mensaje"];
+            echo "<h1>Bienvenido al muro de ".$fila2["nombre"]."</h1>";
             echo $fila["mensaje"];
             echo "<br>";
-            echo "<a href='modificar.php?idmens=$idmens' >Modifica el mensaje</a>";
-            echo "<a href='eliminar.php?idmens=$idmens'>Eliminar mensaje</a>";
+            echo "<a href='detalles.php?idmens=$idmens' >Ver mensaje en detalle</a>";
             echo "<br><br>";
             $fila = $result->fetch_assoc();
         }
     }
 }
-    ?>
+?>
 <br><br>
-<a href="añadir.php">Añadir Mensaje</a>
-<a href="buscar.php">Buscar</a>
+<a href="pagina.php">Volver a mi muro personal</a>
 </body>
 </html>

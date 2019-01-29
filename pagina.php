@@ -21,10 +21,11 @@ if(isset($_SESSION["usuario"])) {
         echo "<p>No hay mensajes</p>";
     } else {
         while ($fila) {
+            $idmens=$fila["id_mensaje"];
             echo $fila["mensaje"];
             echo "<br>";
-            echo "<a href='modificar.php?idmens=".$fila["id_mensaje"]."' >Modifica el mensaje</a>";
-            echo "<a href=''></a>";
+            echo "<a href='modificar.php?idmens=$idmens' >Modifica el mensaje</a>";
+            echo "<a href='eliminar.php?idmens=$idmens'>Eliminar mensaje</a>";
             echo "<br><br>";
             $fila = $result->fetch_assoc();
         }

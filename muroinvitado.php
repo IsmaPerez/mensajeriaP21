@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../bootstrap.min.css">
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body{
+            background-color: #1b1e21;
+        }
+    </style>
 </head>
 <body>
 <?php
@@ -18,22 +23,30 @@ if(isset($_GET["id"])) {
     $result2 = $mysql->query("SELECT * FROM usuarios WHERE id=$idUsu");
     $fila = $result->fetch_assoc();
     $fila2 = $result2->fetch_assoc();
-    echo "<h1>Bienvenido al muro de ".$fila2["nombre"]."</h1>";
+    echo "<h1 class='jumbotron text-center' style='background-color: #0c5460'>Bienvenido al muro de ".$fila2["nombre"]."</h1>";
     if ($fila == NULL) {
         echo "<p>No hay mensajes</p>";
     } else {
         while ($fila) {
             $idmens=$fila["id_mensaje"];
-            echo $fila["mensaje"];
+            echo "<div class='jumbotron'>";
+            echo "<h5 class='text-center'>".$fila["mensaje"]."</h5>";
             echo "<br>";
-            echo "<a href='detalles.php?idmens=$idmens' >Ver mensaje en detalle</a>";
-            echo "<br><br>";
+            echo "<div class='text-center'><a href='detalles.php?idmens=$idmens' class='btn btn-primary text-center'>Ver mensaje en detalle</a></div>";
+            echo "</div>";
+            echo "<br>";
             $fila = $result->fetch_assoc();
         }
     }
 }
+else{
+    header('location:index.php');
+}
 ?>
 <br><br>
-<a href="pagina.php">Volver a mi muro personal</a>
+<div class="text-center">
+    <a href="pagina.php" class="btn btn-primary text-center" style="margin: 10px">Volver a mi muro personal</a>
+</div>
+<br><br>
 </body>
 </html>

@@ -7,9 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body{
+            background-color: #1b1e21;
+        }
+    </style>
 </head>
 <body>
-<h1>Estas buscando a:</h1>
+<h1 class="jumbotron text-center" style="background-color: #0c5460">Estas buscando a:</h1>
 <?php
 if (isset($_GET["nombre"]) || isset($_GET["apellido"]) || $_GET["login"]){
     $nombre=$_GET["nombre"];
@@ -21,7 +26,7 @@ if (isset($_GET["nombre"]) || isset($_GET["apellido"]) || $_GET["login"]){
     while($fila){
         $idUsu=$fila["id"];
         if ($nombre==$fila["nombre"] || $apellido==$fila["apellido1"] || $login==$fila["login"]){
-            echo "<a href='muroinvitado.php?id=$idUsu'>".$fila["nombre"]." ".$fila["apellido1"]."</a>";
+            echo "<a href='muroinvitado.php?id=$idUsu'><h5 style='padding-left: 20px'>".$fila["nombre"]." ".$fila["apellido1"]."</h5></a>";
             echo "<br>";
         }
         $fila=$result->fetch_assoc();

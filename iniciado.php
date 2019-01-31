@@ -10,10 +10,7 @@ if (isset($_POST["login"]) && isset($_POST["pass"])){
                 session_start();
                 $_SESSION["iniciado"]=1;
                 $_SESSION["usuario"]=$fila["id"];
-                header('location:pagina.php?');
-        }
-        else{
-            echo "<p>Usuario incorrecto</p>";
+                header('location:pagina.php');
         }
         $fila=$result->fetch_assoc();
     }

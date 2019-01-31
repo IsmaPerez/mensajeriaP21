@@ -6,14 +6,17 @@ if (isset($_POST["nombre"]) && isset($_POST["apellido1"]) && isset($_POST["apell
     $login=$_POST["login"];
     $pass=$_POST["pass"];
     $passc=$_POST["passc"];
-    if ($pass==$passc){
-        $mysql= new mysqli("localhost","user","user","mensajeria");
-        $mysql->query("INSERT INTO usuarios VALUES (NULL,'$nombre','$apellido1','$apellido2','$login','$pass')");
-        header('location:iniciar.php');
-    }
-    else{
-        $error=1;
-        header('location:registrar.php?error=1');
+    if ($mysql= new mysqli("localhost","user","user","mensajeria")) {
+        if ($pass == $passc) {
+            $mysql->query("INSERT INTO usuarios VALUES (NULL,'$nombre','$apellido1','$apellido2','$login','$pass')");
+            header('location:iniciar.php');
+        } else {
+            $error = 1;
+            header('location:registrar.php?error=1');
+        }
+    }else{
+       $error=2;
+       header('registrar..php?error=2');
     }
 }
 else{

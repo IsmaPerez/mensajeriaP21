@@ -11,12 +11,25 @@
 <body>
 <h1>Detalles del mensaje</h1>
 <?php
+session_start();
 if (isset($_GET["idmens"])){
+    $idUsu=$_SESSION["usuario"];
     $idmens=$_GET["idmens"];
     $mysql = new mysqli("localhost", "user", "user", "mensajeria");
     $result = $mysql->query("SELECT * FROM mensajes WHERE id_mensaje=$idmens");
+    $result2=$mysql->query("SELECT SUM(voto) as SUMA FROM votaciones WHERE id_mensaje='.$idmens.'");
+    $result3=$mysql->query("SELECT COUNT(voto) as CUENTA FROM votaciones WHERE id_mensaje='.$idmens.'");
     $fila = $result->fetch_assoc();
-    echo $fila["mensaje"];
+    $fila2=$result2->fetch_assoc();
+    $fila3=$result3->fetch_assoc();
+    $media=($fila2["SUMA"]/$fila3["CUENTA"]);
+    echo "<h5>".$fila["mensaje"]." </h5>";
+    echo "<p><em>Este mensaje tiene una media de ".$media." votos</em></p>";
+    echo "<br>";
+    echo "<a href='votacion.php?idmens=$idmens'>Votar mensaje</a>";
+}
+else{
+    header('location=muroinvitado.php');
 }
 ?>
 </body>

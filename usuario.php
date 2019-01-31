@@ -22,6 +22,7 @@ if (isset($_GET["nombre"]) || isset($_GET["apellido"]) || $_GET["login"]){
         $idUsu=$fila["id"];
         if ($nombre==$fila["nombre"] || $apellido==$fila["apellido1"] || $login==$fila["login"]){
             echo "<a href='muroinvitado.php?id=$idUsu'>".$fila["nombre"]." ".$fila["apellido1"]."</a>";
+            echo "<br>";
         }
         $fila=$result->fetch_assoc();
     }

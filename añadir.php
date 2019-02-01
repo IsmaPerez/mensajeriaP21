@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["iniciado"])){
+    header('location:index.php');
+}
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -15,6 +21,8 @@
 </head>
 <body>
 <h1 class="jumbotron text-center" style="background-color: #0c5460">Escriba un mensaje en su muro</h1>
+<div class="text-right" style="padding-right: 10px"><a href="pagina.php" class="btn btn-primary">Volver a mi muro</a></div>
+<br>
 <form action="añadirmens.php" method="get" class="text-center">
     <textarea  name="mensaje" id="mensaje" placeholder="¿Que desea escribir?" cols="30" rows="10"
                class="border-dark" style="background-color: lightgray"></textarea>

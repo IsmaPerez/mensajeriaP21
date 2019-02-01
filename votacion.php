@@ -12,10 +12,18 @@ if (isset($_GET["idmens"])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body{
+            background-color: #1b1e21;
+        }
+        label{
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<h2>¿Con que valor calificarías este mensaje?</h2>
-<form action="votar.php" method="get">
+<h2 class="jumbotron text-center" style="background-color: #0c5460">¿Con que valor calificarías este mensaje?</h2>
+<form action="votar.php" method="get" class="text-center">
     <label for="votacion">Puntos:</label>
     <br>
     <select name="votacion" id="votacion">
@@ -32,14 +40,14 @@ if (isset($_GET["idmens"])){
     </select>
     <input type="hidden" name="idmens" id="idmens" value="<?=$idmens?>">
     <br><br>
-    <button>Votar</button>
+    <button class="btn btn-primary">Votar</button>
 </form>
 </body>
 </html>
 <?php
 }
 else{
-    header('location:pagina.php');
+    header('location:index.php');
 }
 ?>
 

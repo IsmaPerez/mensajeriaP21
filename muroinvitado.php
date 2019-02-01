@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["iniciado"])){
+    header('location:index.php');
+}
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -12,6 +18,10 @@
         body{
             background-color: #1b1e21;
         }
+        #mensaje{
+            max-width: 60%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -25,11 +35,11 @@ if(isset($_GET["id"])) {
     $fila2 = $result2->fetch_assoc();
     echo "<h1 class='jumbotron text-center' style='background-color: #0c5460'>Bienvenido al muro de ".$fila2["nombre"]."</h1>";
     if ($fila == NULL) {
-        echo "<p>No hay mensajes</p>";
+        echo "<h5 class='text-center' style='color: white'>No hay mensajes</h5>";
     } else {
         while ($fila) {
             $idmens=$fila["id_mensaje"];
-            echo "<div class='jumbotron'>";
+            echo "<div class='jumbotron' id='mensaje'>";
             echo "<h5 class='text-center'>".$fila["mensaje"]."</h5>";
             echo "<br>";
             echo "<div class='text-center'><a href='detalles.php?idmens=$idmens' class='btn btn-primary text-center'>Ver mensaje en detalle</a></div>";

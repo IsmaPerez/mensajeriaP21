@@ -16,6 +16,10 @@
             width: 20px;
             height: 20px;
         }
+        #mensaje{
+            max-width: 60%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +42,7 @@ if ( $mysql = new mysqli("localhost", "user", "user", "mensajeria")){
         } else {
             while ($fila) {
                 $idmens=$fila["id_mensaje"];
-                echo "<div class='jumbotron'>";
+                echo "<div class='jumbotron' id='mensaje'>";
                 echo "<h5 class='text-center'>".$fila["mensaje"]."</h5>";
                 echo "<br>";
                 echo "<div class='text-center'>";
